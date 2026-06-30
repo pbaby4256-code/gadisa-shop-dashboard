@@ -1,0 +1,148 @@
+:root {
+  --bg: #f7f5f3;
+  --surface: #ffffff;
+  --surface-muted: #f1efed;
+  --border: #e7e3df;
+  --text: #1c1a18;
+  --text-muted: #8b857e;
+  --text-secondary: #5c5650;
+  --accent: #e85d26;
+  --accent-soft: #fdebe0;
+  --success: #16a34a;
+  --success-soft: #e8f6ec;
+  --radius: 14px;
+  --radius-lg: 24px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 14px;
+  outline: none;
+}
+input:focus { border-color: var(--accent); }
+
+button {
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+/* ---------- Login page ---------- */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.login-card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+}
+.login-header { text-align: center; margin-bottom: 2rem; }
+.login-icon {
+  width: 56px; height: 56px; border-radius: 16px;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px; font-size: 26px;
+}
+.login-title { font-size: 20px; font-weight: 600; margin: 0; }
+.login-subtitle { font-size: 13px; color: var(--text-secondary); margin: 4px 0 0; }
+.field-label { font-size: 12px; color: var(--text-secondary); display: block; margin-bottom: 6px; }
+.login-button {
+  width: 100%; margin-top: 1.25rem; padding: 12px;
+  border: none; border-radius: var(--radius);
+  background: var(--accent); color: white; font-weight: 600;
+}
+.login-button:disabled { opacity: 0.6; cursor: default; }
+.login-error { color: #c0362c; font-size: 13px; margin: 10px 0 0; }
+.login-note {
+  margin-top: 1.25rem; padding: 10px 12px; border-radius: var(--radius);
+  background: #fdf3e2; color: #92660d; font-size: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* ---------- App shell / bottom nav ---------- */
+.app-shell {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+.app-main { flex: 1; padding-bottom: 80px; }
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  padding: 10px 0 16px;
+}
+.bottom-nav-item {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-muted);
+}
+.bottom-nav-item.active { color: var(--accent); }
+.bottom-nav-icon { display: block; font-size: 20px; }
+.bottom-nav-label { font-size: 11px; margin-top: 2px; display: block; }
+
+/* ---------- Receipts page ---------- */
+.receipts-page { padding: 1.25rem; }
+.receipts-page-header { margin-bottom: 1rem; }
+.receipts-page-eyebrow { font-size: 13px; color: var(--text-muted); margin: 0; }
+.receipts-page-title { font-size: 20px; font-weight: 600; margin: 2px 0 0; }
+
+.receipt-filters { margin-bottom: 1rem; }
+
+.receipt-feed-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 8px;
+}
+.receipt-feed-title { font-size: 13px; font-weight: 600; margin: 0; }
+.live-dot { font-size: 12px; color: var(--text-muted); }
+.live-dot.live { color: var(--success); }
+.receipt-feed-empty { font-size: 13px; color: var(--text-muted); padding: 2rem 0; text-align: center; }
+
+.receipt-list { display: flex; flex-direction: column; }
+.receipt-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.receipt-row-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.receipt-row-main { flex: 1; min-width: 0; }
+.receipt-row-name {
+  font-size: 13px; margin: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.receipt-row-meta { font-size: 11px; color: var(--text-muted); margin: 1px 0 0; }
+.receipt-row-amount { font-size: 14px; font-weight: 600; margin: 0; white-space: nowrap; }
