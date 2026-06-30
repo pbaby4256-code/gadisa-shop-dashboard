@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signInWithPhone } from '@/lib/supabase/auth';
+import { signInWithEmail } from '@/lib/supabase/auth';
 
 export default function LoginPage() {
   const router = useRouter();
-  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -16,12 +16,12 @@ export default function LoginPage() {
     setError(null);
     setLoading(true);
 
-    const { error } = await signInWithPhone(phone, password);
+    const { error } = await signInWithEmail(email, password);
 
     setLoading(false);
 
     if (error) {
-      setError('Incorrect phone number or password.');
+      setError('Incorrect email or password.');
       return;
     }
 
@@ -39,12 +39,12 @@ export default function LoginPage() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <label className="field-label">Phone number</label>
+          <label className="field-label">Email</label>
           <input
-            type="tel"
-            placeholder="09xx xxx xxx"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            type="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
 
