@@ -17,9 +17,9 @@ export async function getCurrentProfile(): Promise<Profile | null> {
   return data as Profile;
 }
 
-export async function signInWithPhone(phone: string, password: string) {
+export async function signInWithEmail(email: string, password: string) {
   const supabase = createClient();
-  return supabase.auth.signInWithPassword({ phone, password });
+  return supabase.auth.signInWithPassword({ email, password });
 }
 
 export async function signOut() {
