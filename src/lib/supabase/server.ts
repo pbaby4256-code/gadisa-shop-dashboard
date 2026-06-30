@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import type { CookieOptions } from '@supabase/ssr';
 
 export function createClient() {
   const cookieStore = cookies();
@@ -12,7 +13,9 @@ export function createClient() {
         getAll() {
           return cookieStore.getAll();
         },
-        setAll(cookiesToSet) {
+        setAll(
+          cookiesToSet: { name: string; value: string; options: CookieOptions }[]
+        ) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
@@ -27,8 +30,6 @@ export function createClient() {
   );
 }
 
-// Service-role client — SERVER ONLY, used solely for admin actions like
-// creating new employee Auth accounts. Never import this in a client component.
 export function createServiceRoleClient() {
   const { createClient: createSupabaseClient } = require('@supabase/supabase-js');
   return createSupabaseClient(
