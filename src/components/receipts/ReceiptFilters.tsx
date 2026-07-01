@@ -8,25 +8,22 @@ export function ReceiptFilters() {
   const searchParams = useSearchParams();
   const [search, setSearch] = useState(searchParams.get('q') ?? '');
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  function handleChange(val: string) {
+    setSearch(val);
     const params = new URLSearchParams(searchParams.toString());
-    if (search) {
-      params.set('q', search);
-    } else {
-      params.delete('q');
-    }
+    if (val) { params.set('q', val); } else { params.delete('q'); }
     router.push(`/receipts?${params.toString()}`);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="receipt-filters">
+    <div className="receipt-filters">
+      <span className="receipt-filters-icon">🔍</span>
       <input
         type="text"
-        placeholder="Search customer name or reference"
+        placeholder="Search customer name or reference…"
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => handleChange(e.target.value)}
       />
-    </form>
+    </div>
   );
 }
