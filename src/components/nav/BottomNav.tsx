@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 const TABS = [
-  { href: '/receipts', label: 'Home', icon: '🏠', provider: undefined },
+  { href: '/receipts', label: 'All', icon: '🏠', provider: undefined },
   { href: '/receipts?provider=telebirr', label: 'telebirr', icon: '🟡', provider: 'telebirr' },
   { href: '/receipts?provider=BOA', label: 'BOA', icon: '🏦', provider: 'BOA' },
   { href: '/receipts?provider=CBE', label: 'CBE', icon: '🏛️', provider: 'CBE' },
@@ -22,7 +22,6 @@ export function BottomNav() {
           pathname === '/receipts' &&
           ((tab.provider === undefined && !activeProvider) ||
             tab.provider === activeProvider);
-
         return (
           <Link
             key={tab.label}
