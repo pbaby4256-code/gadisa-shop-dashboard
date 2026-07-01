@@ -12,14 +12,12 @@ export default function ReceiptsPage({
 
   return (
     <div className="receipts-page">
-      <div className="receipts-page-header">
-        <p className="receipts-page-eyebrow">Gadisa Shop</p>
-        <p className="receipts-page-title">
-          {provider ? `${provider} payments` : 'Payment check'}
+      <ReceiptFilters />
+      <div className="section-header">
+        <p className="section-title">
+          {provider ? `${provider} payments` : 'Recent payments'}
         </p>
       </div>
-
-      <ReceiptFilters />
       <ReceiptFeed provider={provider} search={search} />
     </div>
   );
