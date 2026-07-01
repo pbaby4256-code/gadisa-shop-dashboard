@@ -1,4 +1,5 @@
 import type { Receipt } from '@/lib/types/receipt';
+import { ProviderLogo } from '@/components/ui/ProviderLogo';
 
 function timeAgo(iso: string): string {
   const diffMs = Date.now() - new Date(iso).getTime();
@@ -10,20 +11,12 @@ function timeAgo(iso: string): string {
   return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
 }
 
-const PROVIDER_ICON: Record<string, string> = {
-  telebirr: '🟡',
-  CBE:      '🏛️',
-  BOA:      '🏦',
-  Awash:    '💜',
-};
-
 export function ReceiptRow({ receipt, isNew }: { receipt: Receipt; isNew?: boolean }) {
-  const icon = PROVIDER_ICON[receipt.provider] ?? '💳';
   const providerClass = `provider-${receipt.provider}`;
 
   return (
     <div className={`receipt-card ${providerClass} ${isNew ? 'new-entry' : ''}`}>
-      <div className="receipt-icon">{icon}</div>
+      <ProviderLogo provider={receipt.provider} size={42} />
 
       <div className="receipt-body">
         <p className="receipt-name">{receipt.payer_name ?? 'Unknown payer'}</p>
@@ -39,7 +32,7 @@ export function ReceiptRow({ receipt, isNew }: { receipt: Receipt; isNew?: boole
       <div className="receipt-right">
         <p className="receipt-amount">
           ETB {Number(receipt.amount).toLocaleString('en-ET', {
-            minimumFractionDigits: 2, maximumFractionDigits: 2
+            minimumFractionDigits: 2, maximumFractionDigits: 2,
           })}
         </p>
         <div className="receipt-check">✓</div>
